@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { Student } from 'src/student/student.entity';
+import { View } from 'typeorm/schema-builder/view/View';
 import { Course} from './course.entity';
 import { CourseService } from './course.service';
 @Controller('course')
@@ -18,6 +19,12 @@ export class CourseController {
     Findbyid(@Param() id:String ){
         return this.CourseService.findone(id);
     }
+    @Get('/info/:data')
+    Findbydata(@Param('data') data:String ){
+        return this.CourseService.finddata(data);
+    }
+
+
 
     @Put(':id')
     updateCourse(@Param('id') id:string, @Body() data: Partial<Course>){

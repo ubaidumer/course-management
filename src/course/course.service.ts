@@ -47,6 +47,13 @@ async findone(id:String){
     }
     return await this.courseRep.findOne({where:id});
 }
+async finddata(data:String){
+    let c= await this.courseRep.findOne({coursename:data});
+    if(!c){
+        return "Not Found";
+    }
+    return c;
+}
 async update(id:string, data:Partial<Course>){
     if(data.coursename){
         if(validator.isEmpty(data.coursename)&&validator.isAlpha(data.coursename)){

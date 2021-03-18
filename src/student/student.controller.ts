@@ -9,7 +9,10 @@ export class StudentController {
     showAllStudents(){
         return this.studentService.showAll();
     }
-
+    @Get('/info/:data')
+    getbyinfo(@Param('data') data:string){
+        return this.studentService.getbyinfo(data);
+    }
     @Post()
     createStudent(@Body() data:Student){
         return this.studentService.create(data)

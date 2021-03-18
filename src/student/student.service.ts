@@ -94,5 +94,13 @@ async destroy(id:string){
     await this.studentRep.delete(id);
     return { deleted: true};
 }
+async getbyinfo(data:string){
+    if(validator.isEmail(data)){
+        const s= await this.studentRep.findOne({email:data});
+        return s;        
+    }
+    const s= await this.studentRep.findOne({username:data});
+    return s;
+}
 
 }
