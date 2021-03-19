@@ -5,7 +5,7 @@ import {Student} from "../student/student.entity";
 export class Course extends BaseEntity{
  
     @Column({type:"varchar",length:25,nullable:false,unique:true})
-    coursename:String;
+    coursename:string;
     @Column({type:"int",nullable:false})
     studentlimit:number;
     @ManyToMany(type=> Student, student=> student)

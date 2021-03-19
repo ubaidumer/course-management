@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { Student } from './student.entity';
+import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { multerOptions,Student } from './student.entity';
 import { StudentService } from './student.service';
-
+import { AnyFilesInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express'
 @Controller('student')
 export class StudentController {
     constructor(private studentService: StudentService){}
@@ -12,6 +13,12 @@ export class StudentController {
     @Get('/info/:data')
     getbyinfo(@Param('data') data:string){
         return this.studentService.getbyinfo(data);
+    }
+
+    @Post('upload')
+    @UseInterceptors(FilesInterceptor('image'))
+    uploadfile(@UploadedFiles() file){
+        console.log(file);
     }
     @Post()
     createStudent(@Body() data:Student){

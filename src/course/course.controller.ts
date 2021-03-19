@@ -20,7 +20,7 @@ export class CourseController {
         return this.CourseService.findone(id);
     }
     @Get('/info/:data')
-    Findbydata(@Param('data') data:String ){
+    Findbydata(@Param('data') data:string ){
         return this.CourseService.finddata(data);
     }
 

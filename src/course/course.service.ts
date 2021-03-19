@@ -47,7 +47,7 @@ async findone(id:String){
     }
     return await this.courseRep.findOne({where:id});
 }
-async finddata(data:String){
+async finddata(data:string){
     let c= await this.courseRep.findOne({coursename:data});
     if(!c){
         return "Not Found";
